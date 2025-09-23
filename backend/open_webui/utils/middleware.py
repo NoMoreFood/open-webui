@@ -312,6 +312,9 @@ async def chat_completion_tools_handler(
                     await tool_call_handler(tool_call)
             else:
                 await tool_call_handler(result)
+                
+            if result.get("finish_reason"):
+                log.debug(f"Error: Finish Reason!!!")
 
         except Exception as e:
             log.debug(f"Error: {e}")
